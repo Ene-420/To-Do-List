@@ -1,9 +1,9 @@
 const { intlFormatDistance } = require("date-fns");
 
-class Files{
-    constructor(title, notes){
+export class Files{
+    constructor(title){
         this.title = title;
-        this.notes = notes;
+        this.notes = '';
         this.dateCreated = new Date();
     }
 
@@ -20,7 +20,7 @@ class Files{
     }
 
     getDays(){
-        return intlFormatDistance(new Date(getDate()), new Date())
+        return intlFormatDistance(new Date(this.getDate()), new Date())
     }
     setNotes(text){
         this.notes = text;
@@ -31,9 +31,9 @@ class Files{
     }
 }
 
-class ToDo extends Files{
-    constructor(title, notes, priority, dueDate){
-        super(title, notes);
+export class ToDo extends Files{
+    constructor(title, priority, dueDate){
+        super(title);
         this.priority = priority;
         this.dueDate = dueDate; 
 

@@ -1,6 +1,35 @@
-const projectMenu =()=>{
-    const body = document.querySelector('body');
-    const contentLibrary = document.querySelector('.content-library');
+import { crud } from "../obj/CRUD";
+import { library } from "./library";
+import { notesMenu } from "./notes";
 
+export const projectMenu =()=>{
+    const contentBody = document.querySelector('.content');
+    
+    const contentLibrary = document.createElement('section');
+    contentLibrary.classList.add('content-library');
+    const newLibrary = library();
+    const crudOperations = crud();
+
+
+    render();
     const libraryContent = document.querySelectorAll('.files')
+
+    libraryContent.forEach((file) =>{
+        file.addEventListener('click', openNotes)
+    })
+
+
+    function openNotes(e){
+        //console.log(e.target.lastElementChild);
+        e.target.lastElementChild.style.display = 'none';
+        const notes = notesMenu() 
+    }
+    function render(){
+        crudOperations.readAll().forEach((item) =>{
+            contentLibrary.appendChild(newLibrary.createFile(item))
+        })
+        
+        contentBody.appendChild(contentLibrary);
+    }
+    
 }
