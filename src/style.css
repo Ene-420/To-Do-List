@@ -73,6 +73,18 @@ body{
     margin: 0 auto;
     flex-direction: column;
 }
+
+.notes-page-head{
+    display: flex;
+}
+
+.notes-page-head h2{
+    flex: 1;
+}
+
+.notes-page-head> button> i{
+    font-size: 3vw;
+}
 .files{
     display:flex;
     justify-content: flex-start;

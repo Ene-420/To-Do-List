@@ -4,7 +4,7 @@ export const library =() =>{
 
 
 
-    function createFile(item){
+    function createFile(item, value){
         //const fileDiv = document.createElement('div');
         const priorityLabel = document.createElement('div');
         const fileTitle = document.createElement('h1')
@@ -19,13 +19,16 @@ export const library =() =>{
         check.style.display = 'none';
         if(item.constructor.name ==='To-Do'){
             date.textContent = item.getDueDate();
-            priorityLabel.classList.add(`${item.getPriority()}`)   
+            priorityLabel.classList.add(`${item.getPriority()}`)
+            fileDiv.dataset.type= 'To-Do';   
         }
         else{
             date.textContent = item.getDays();
             priorityLabel.classList.add('note-tag');
+            fileDiv.dataset.type= 'File';
         }
 
+        fileDiv.dataset.key = value;
         date.style.pointerEvents = 'none';
         priorityLabel.style.pointerEvents = 'none';
 

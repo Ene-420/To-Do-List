@@ -9,5 +9,9 @@ export const crud = ()=>{
     }
 
 
-    return{ readAll};
+    function read(item){
+        return libraryBooks[item];
+    }
+
+    return{ readAll, read};
 }

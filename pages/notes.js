@@ -1,17 +1,34 @@
-export const notesMenu = () =>{
+export const notesMenu = (item) =>{
     const contentBody = document.querySelector('.content');
+    const contentNotes = document.querySelector('.content-notes');
+    const notesHeader = document.querySelector('.notes-page-head> h2');
+    const notesTextArea = document.querySelector('.notes-page>textarea')
 
-    render()
+    //const 
 
-    function render(){
+    if(contentNotes){
+        updateContentNotes(item);
+        
+    }else{
+        render(item)
+    }
+    
 
-        contentBody.style.gridTemplateColumns  ='[start]1fr[start-end] 3fr [end]';
+    
+    const closeBtn = document.querySelector('.notes-page-head > button');
+
+    closeBtn.addEventListener('click', closeNotes);
+
+    function render(item){
+
+        openNotes();
         
         const contentNotes = document.createElement('div');
         contentNotes.classList.add('content-notes');
 
-        contentNotes.appendChild(createPage());
+        
         contentBody.appendChild(contentNotes)
+        contentNotes.appendChild(createPage(item));
     }
     
 
@@ -24,13 +41,17 @@ export const notesMenu = () =>{
         const pageText = document.createElement('textarea'); 
 
         pageDiv.classList.add('notes-page');
-        pageTitle.textContent= '';
+        pageTitle.textContent = item.getTitle();
         pageTitle.setAttribute('contenteditable', 'true');
 
         i.classList.add('fa-solid');
         i.classList.add('fa-xmark')
         closeButton.appendChild(i);
-
+        pageHead.classList.add('notes-page-head')
+        if(item.getNotes()){
+            pageText.textContent = item.getNotes();
+        }
+        pageText.setAttribute('placeholder', 'Enter Text Here');
         pageHead.appendChild(pageTitle);
         pageHead.appendChild(closeButton);
 
@@ -38,5 +59,21 @@ export const notesMenu = () =>{
         pageDiv.appendChild(pageText);
 
         return pageDiv;
+    }
+
+
+    function openNotes(){
+        contentBody.style.gridTemplateColumns  ='[start]1fr[start-end] 3fr [end]';
+        //contentNotes.style.display = 'flex';
+    }
+
+
+    function closeNotes(e){
+        contentBody.style.gridTemplateColumns  ='[start]1fr[start-end] 0fr [end]';
+        e.target.closest('.content-notes').style.display ="none";
+    }
+
+    function updateContentNotes(){
+
     }
 }
