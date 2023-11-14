@@ -1,4 +1,5 @@
 import { crud } from "../obj/CRUD";
+import { libraryTools } from "../tools/libraryTools";
 import { library } from "./library";
 import { notesMenu } from "./notes";
 
@@ -10,7 +11,8 @@ export const projectMenu =()=>{
     const newLibrary = library();
     const crudOperations = crud();
 
-
+    
+    libraryTools();
     render();
     const libraryContent = document.querySelectorAll('.files')
 
@@ -30,6 +32,7 @@ export const projectMenu =()=>{
         // crudOperations.readAll().forEach((item) =>{
         //     contentLibrary.appendChild(newLibrary.createFile(item))
         // })
+        //libraryTools();
         let fileList = crudOperations.readAll();
         for(let i=0; i < fileList.length; i++){
             contentLibrary.appendChild(newLibrary.createFile(fileList[i], i))

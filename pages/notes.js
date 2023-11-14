@@ -64,6 +64,9 @@ export const notesMenu = (item) =>{
 
     function openNotes(){
         contentBody.style.gridTemplateColumns  ='[start]1fr[start-end] 3fr [end]';
+        if(contentNotes && contentNotes.style.display === 'none'){
+            contentNotes.style.display = 'flex'
+        }
         //contentNotes.style.display = 'flex';
     }
 
@@ -73,7 +76,16 @@ export const notesMenu = (item) =>{
         e.target.closest('.content-notes').style.display ="none";
     }
 
-    function updateContentNotes(){
+    function updateContentNotes(item){
 
+        if(notesHeader.textContent.includes(item.getTitle())){
+            openNotes();
+        }
+        else{
+            notesHeader.textContent = item.getTitle();
+            notesTextArea.textContent = item.getNotes();
+
+            openNotes();
+        }
     }
 }

@@ -46,19 +46,19 @@ body{
     display: grid;
     gap: 8px;
     grid-template-columns:  [start]1fr[start-end] 0fr [end];
+    grid-auto-rows: auto 1fr;
 }
 
 .content-library{
     width: 90%;
     height: 90%;
     margin: 10px auto;
-    background-color: #ffffff;
+    /* background-color: #ffffff; */
     grid-column: start/start-end;
     display: flex;
     flex-direction: column;
     gap: 8px;
 }
-
 .content-notes{
     grid-column: start-end/end;
     width: 80%;
@@ -91,6 +91,7 @@ body{
     align-items: center;
     margin: 8px;
     gap: 5px;
+    background-color: #ffffff;
     padding: 10px 5px;
     border-radius: 5px;
     height: fit-content;
@@ -104,12 +105,20 @@ body{
 .library-tools{
     display: flex;
     justify-content: space-between;
+    margin: 10px auto;
+    height: fit-content;
+    width: 90%;
+}
+
+.library-tools > button> i{
+    font-size: 2em;
+    color: rgb(48, 157, 201);
 }
 
 .files h1{
     flex: 1;
     text-align: start;
-    font-size: 2vw;
+    font-size: 1,8em;
     
 }
 .top-priority, .mid-priority, .low-priority, .note-tag{
@@ -131,4 +140,25 @@ body{
     background-color:black ;
 }
 
+dialog{
+    width: fit-content;
+    height: fit-content;
+    padding: 8px;
+}
+form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px auto;
 
+}
+.button-div{
+    display: flex;
+}
+
+.create-btn, .cancel-btn{
+    padding: 8px 10px;
+    border-radius: 16px;
+    color: white;
+    background-color: rgb(48, 157, 201);
+}

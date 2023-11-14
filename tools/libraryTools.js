@@ -1,6 +1,6 @@
 export const libraryTools = () =>{
 
-    const libraryContent = document.querySelector('.content-library');
+    const libraryContent = document.querySelector('.content');
 
     createLibraryTools();
 
@@ -15,9 +15,11 @@ export const libraryTools = () =>{
         const i = document.createElement('i');
         i.classList.add('fa-solid');
         i.classList.add(`fa-${item}`);
+        toolsButton.classList.add(item);
 
         toolsButton.appendChild(i);
         toolsDiv.appendChild(toolsButton);
+        toolsDiv.classList.add('library-tools')
       })
 
       libraryContent.appendChild(toolsDiv);
