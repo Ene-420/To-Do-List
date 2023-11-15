@@ -1,8 +1,15 @@
+import { dialog } from "./toolsDialog";
+
 export const libraryTools = () =>{
 
     const libraryContent = document.querySelector('.content');
 
     createLibraryTools();
+
+    const penSquare = document.querySelector('.pen-to-square');
+
+
+    penSquare.addEventListener('click', openCreateMenu)
 
     
     function createLibraryTools(){
@@ -23,5 +30,12 @@ export const libraryTools = () =>{
       })
 
       libraryContent.appendChild(toolsDiv);
+    }
+
+
+    function openCreateMenu(e){
+      if(e){
+        dialog();
+      }
     }
 }
