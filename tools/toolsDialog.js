@@ -23,15 +23,17 @@ export const dialog = ()=>{
         
     // })
     fileRadioBtn.forEach((radioBtn) =>{
-        radioBtn.addEventListener('change', checked)
+        radioBtn.onclick = checked
+        //radioBtn.addEventListener('click', checked)
         //radioBtn.removeEventListener('change', checked)
        
 
     })
 
     function checked(e){
+        console.log(e)
         const target = e.target;
-        const priorityDiv = document.createElement('div');
+        //const priorityDiv = document.createElement('div');
         if((target.value.includes('To-Do-List')) && (target.checked)){
             if(priority){
                 priority.style.display = 'block'
@@ -49,7 +51,7 @@ export const dialog = ()=>{
             
         }
 
-        //target.removeEventListener('change', checked)
+        //target.removeEventListener('click', checked)
     }
     // toDoList.addEventListener('change', ()=>{
     //     console.log('change')
@@ -69,7 +71,7 @@ export const dialog = ()=>{
     //         }
     //     }
     // })
-    cancelBtn.addEventListener('click', closeDialog);
+    cancelBtn.onclick = closeDialog;
     //createBtn.addEventListener('click', )
 
     function createDialog(){
@@ -152,12 +154,17 @@ export const dialog = ()=>{
     }
 
     function closeDialog(e){
+        console.log(e)
         const target = e.target.closest('dialog');
         
         if(target.open){
             target.close();
             target.style.display = 'none';
+            if(priority ){
+                priority.style.display = 'none';
+            }
         }
+        //e.target.removeEventListener('click', closeDialog)
     }
 
     function createLabel(item, itemType){

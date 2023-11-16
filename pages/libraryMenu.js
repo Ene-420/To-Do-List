@@ -22,17 +22,16 @@ export const projectMenu =()=>{
 
 
     function openNotes(e){
-        //console.log(e.target.lastElementChild);
+        console.log(e)
         e.target.lastElementChild.style.display = 'none';
         const fileContents =  crudOperations.read(e.target.dataset.key);
         const notes = notesMenu(fileContents);
+
+        //e.target.removeEventListener('click', openNotes)
     }
 
     function render(){
-        // crudOperations.readAll().forEach((item) =>{
-        //     contentLibrary.appendChild(newLibrary.createFile(item))
-        // })
-        //libraryTools();
+
         let fileList = crudOperations.readAll();
         for(let i=0; i < fileList.length; i++){
             contentLibrary.appendChild(newLibrary.createFile(fileList[i], i))

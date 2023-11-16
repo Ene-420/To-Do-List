@@ -20,12 +20,12 @@ export const library =() =>{
         if(item.constructor.name ==='To-Do'){
             date.textContent = item.getDueDate();
             priorityLabel.classList.add(`${item.getPriority()}`)
-            fileDiv.dataset.type= 'To-Do';   
+            fileDiv.dataset.type= 'To-Do-List';   
         }
         else{
             date.textContent = item.getDays();
             priorityLabel.classList.add('note-tag');
-            fileDiv.dataset.type= 'File';
+            fileDiv.dataset.type= 'Notes';
         }
 
         fileDiv.dataset.key = value;
