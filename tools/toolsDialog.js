@@ -1,42 +1,46 @@
+import { Files, ToDo } from "../obj/files";
+
 export const dialog = ()=>{
 
     const notesPage = document.querySelector('.content');
     const dialog = document.querySelector('dialog');
-    const formTitle = document.querySelector('form> input');
-    const formRadio = document.querySelectorAll('input[name = "file"]')
-
 
     showDialog()
 
     const cancelBtn = document.querySelector('.cancel-btn');
-    const createBtn = document.querySelector('.create-button');
+    const createBtn = document.querySelector('.create-btn');
     const fileRadioBtn = document.querySelectorAll('input[name = "file"]');
+    const priorityRadio = document.querySelectorAll('input[name = "priority-label"]')
     const toDoInput = document.querySelector('input#to-do-list');
     const priority = document.querySelector('.priority');
+    const title =  document.querySelector('#form-title')
+    const form = document.querySelector('form');
+    let checkedFileRadio="";
     
  
-
-    // toDoInput.addEventListener('change', ()=>{
-    //     if(toDoInput.checked){
-    //         console.log('checked')
-    //     }
-        
-    // })
     fileRadioBtn.forEach((radioBtn) =>{
         radioBtn.onclick = checked
-        //radioBtn.addEventListener('click', checked)
-        //radioBtn.removeEventListener('change', checked)
-       
+        if(radioBtn.checked){
+            
+        }
+    })
+    priorityRadio.forEach(radioBtn =>{
 
+        radioBtn.onclick = showDateTime;
     })
 
     function checked(e){
-        console.log(e)
+  
         const target = e.target;
-        //const priorityDiv = document.createElement('div');
+        checkedFileRadio = target.value;
         if((target.value.includes('To-Do-List')) && (target.checked)){
             if(priority){
                 priority.style.display = 'block'
+            //     priorityRadio.forEach(radioBtn =>{
+
+            //     radioBtn.onclick = showDateTime();
+            // })
+                
             }
             
             else{
@@ -45,34 +49,14 @@ export const dialog = ()=>{
             
         }
         else{
-            if(priority){
-                priority.style.display = 'none'
-            }
+            closePriority()
             
         }
 
-        //target.removeEventListener('click', checked)
     }
-    // toDoList.addEventListener('change', ()=>{
-    //     console.log('change')
-    //     if(toDoList.checked){
-    //         const priorityLevel = ['top-priority', 'mid-priority', 'low-priority'];
 
-    //         priorityLevel.forEach((priority) =>{
-    //             priorityDiv.appendChild(createLabel(priority));
-                
-    //         })
-    //         toDoList.appendChild(priorityDiv);
-    //     }
-
-    //     else{
-    //         if(priorityDiv){
-    //             priorityDiv.style.display = 'none';
-    //         }
-    //     }
-    // })
     cancelBtn.onclick = closeDialog;
-    //createBtn.addEventListener('click', )
+    createBtn.onclick = createFile;
 
     function createDialog(){
         const options =['Note', 'To-Do-List']
@@ -115,8 +99,7 @@ export const dialog = ()=>{
         buttonDiv.appendChild(cancelBtn);
         form.appendChild(title)
         form.appendChild(radioDiv);
-        //form.appendChild(buttonDiv)
-
+        
         dialog.appendChild(form)
         dialog.appendChild(buttonDiv)
         notesPage.appendChild(dialog);
@@ -128,6 +111,7 @@ export const dialog = ()=>{
         const priorityDiv = document.createElement('div');
         priorityDiv.classList.add('priority');
         const priorityLevel = ['top-priority', 'mid-priority', 'low-priority'];
+        
 
         priorityLevel.forEach((priority) =>{
             priorityDiv.appendChild(createLabel(priority, 'priority-label'));
@@ -139,10 +123,10 @@ export const dialog = ()=>{
     function showDialog(){
         if(dialog){
 
-            formTitle.textContent = '';
-            formRadio.forEach((radio) =>{
-                radio.checked = false;
-            })
+            // title.textContent = '';
+            // radioBtn.forEach((radio) =>{
+            //     radio.checked = false;
+            // })
             dialog.showModal();
             dialog.style.display = 'block'
         }
@@ -154,17 +138,15 @@ export const dialog = ()=>{
     }
 
     function closeDialog(e){
-        console.log(e)
+        //console.log(e)
         const target = e.target.closest('dialog');
         
         if(target.open){
             target.close();
             target.style.display = 'none';
-            if(priority ){
-                priority.style.display = 'none';
-            }
+            closePriority()
         }
-        //e.target.removeEventListener('click', closeDialog)
+        clearSelection()
     }
 
     function createLabel(item, itemType){
@@ -172,6 +154,7 @@ export const dialog = ()=>{
         const fileType = document.createElement('input');
         const fileLabel = document.createElement('label');
 
+        // fileDiv.classList.add('priority-label')
         fileLabel.textContent = item;
         fileLabel.setAttribute('for', `${item.toLocaleLowerCase()}`);
 
@@ -179,18 +162,78 @@ export const dialog = ()=>{
         fileType.setAttribute('name', itemType);
         fileType.setAttribute('value', `${item}`);
         fileType.setAttribute('id', `${item.toLocaleLowerCase()}`)
-
-        // fileLabel.addEventListener('click', ()=>{
-        //     if(fileLabel.getAttribute('for').includes(fileType.getAttribute('id'))){
-        //         fileType.checked= true;
-        //     }
-        // })
         
         fileDiv.appendChild(fileType)
         fileDiv.appendChild(fileLabel)
+        
 
+        if(itemType.includes('priority-label')){
+            const dateTime = document.createElement('input');
+            dateTime.setAttribute('type', 'datetime-local');
+            dateTime.setAttribute('min', `${new Date().toISOString().slice(0,new Date().toISOString().lastIndexOf(":"))}`)
+            dateTime.setAttribute('name', 'datetime')
+            dateTime.setAttribute('class', 'date-time')
+            fileDiv.appendChild(dateTime);
+            fileDiv.classList.add('priority-label')
+        }
         return fileDiv;
     }
+
+    function createFile(e){
+        //console.log(e)
+        if(title.value && checkedFileRadio){
+            
+            console.log(title.value)
+            if(checkedFileRadio.includes('To-Do-List')){
+                priorityRadio.forEach(radioBtn =>{
+                    if(radioBtn.checked){
+                        console.log(radioBtn.value);
+                        const file = new ToDo()
+                    }
+                })
+
+            }
+        }
+        else{
+            console.log(title.value);
+        }
+        clearSelection()
+        closePriority()
+    }
     
+
+    function clearSelection(){
+
+        form.reset();
+    }
+
+    function closePriority(){
+        if(priority ){
+            priority.style.display = 'none';
+        }
+    }
+
+    function showDateTime(e){
+        console.log('here')
+        let dateTime = e.target.nextSibling.nextSibling;
+        if(e.target.checked){
+            dateTime.style.display ='block';
+        }
+        priorityRadio.forEach(radioBtn =>{
+            let dateTimeSibling = radioBtn.nextSibling.nextSibling;
+            if(radioBtn.checked){
+                console.log(dateTimeSibling);
+                if(dateTimeSibling.style.display ==='none'){
+                    dateTimeSibling.style.display = 'block';
+                }
+                
+            }
+            else{
+                if(dateTimeSibling.style.display ==='block'){
+                    dateTimeSibling.style.display = 'none';
+                }
+            }
+        })
+    }
 }
 

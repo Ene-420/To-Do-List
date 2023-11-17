@@ -145,7 +145,8 @@ dialog{
     left: 50%;
     top:50%;
     background-color: #ffffff;
-    width: fit-content;
+    min-width: fit-content;
+    
     height: fit-content;
     padding: 8px;
     border: 3px solid #7a7a7a;
@@ -175,6 +176,18 @@ form{
 .priority{
     display: none;
     margin-left: 10px;
+}
+
+.priority-label{
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
+.date-time{
+    margin-left: auto;
+    padding: 5px;
+    display: none;
 }
 .create-btn, .cancel-btn{
     padding: 8px 10px;

@@ -22,7 +22,7 @@ export const projectMenu =()=>{
 
 
     function openNotes(e){
-        console.log(e)
+        //console.log(e)
         e.target.lastElementChild.style.display = 'none';
         const fileContents =  crudOperations.read(e.target.dataset.key);
         const notes = notesMenu(fileContents);
