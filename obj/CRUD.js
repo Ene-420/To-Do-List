@@ -1,20 +1,27 @@
-import { Files } from "./files"
+import { Files, ToDo } from "./files"
+const classTransformer=  require("class-transformer");
+//const serialize = require('serialize-javascript'); 
+
 
 export const crud = ()=>{
 
     const libraryBooks=[new Files('Monday Lecture'),new Files('Tuesday Lecture'),new Files('Wednesday Lecture')]
-    let notes = localStorage.getItem('Notes') ? parseJson(localStorage.getItem('Notes')) : []
-    let toDoList = localStorage.getItem('To-Do-List') ? parseJson(localStorage.getItem('To-Do-List')) : []
+    let notes = localStorage.getItem('Notes') ? classTransformer.deserializeArray(Files,localStorage.getItem('Notes')) : []
+    let toDoList = localStorage.getItem('To-Do-List') ? classTransformer.deserializeArray(ToDo,localStorage.getItem('To-Do-List')) : []
+
+
+  
+
 
     function setNotes(item){
         notes.push(item);
-        localStorage.setItem('Notes', toJson(notes));
+        localStorage.setItem('Notes', classTransformer.serialize(notes));
     }
 
 
     function setToDo(item){
         toDoList.push(item);
-        localStorage.setItem('To-Do-List', toJson(toDoList));
+        localStorage.setItem('To-Do-List', classTransformer.serialize(toDoList));
     }
 
     function getNotes(){
@@ -51,11 +58,10 @@ export const crud = ()=>{
     }
 
     function getAll(){
+
         return notes.concat(toDoList)
     }
-    function read(item){
-        return libraryBooks[item];
-    }
+    
 
-    return{ readAll, read};
+    return{ readAll, read, setNotes, setToDo, getNotes, getToDoList, getAll};
 }

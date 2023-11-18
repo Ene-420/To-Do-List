@@ -20,7 +20,7 @@ export class Files{
     }
 
     getDays(){
-        return intlFormatDistance(new Date(this.getDate()), new Date())
+        return intlFormatDistance(new Date(this.dateCreated), new Date())
     }
     setNotes(text){
         this.notes = text;
@@ -36,7 +36,6 @@ export class ToDo extends Files{
         super(title);
         this.priority = priority;
         this.dueDate = dueDate; 
-
     }
 
 
@@ -45,7 +44,7 @@ export class ToDo extends Files{
     }
 
     getDueDate(){
-        const dday= intlFormatDistance( new Date(this.dueDate),new Date(getDate()))
+        const dday= intlFormatDistance( new Date(this.dueDate),new Date(this.dateCreated))
         return dday;
     }
 

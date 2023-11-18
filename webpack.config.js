@@ -1,4 +1,5 @@
 const path = require('path');
+var serialize = require('serialize-javascript');
 
 module.exports = {
     mode:'development',

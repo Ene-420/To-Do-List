@@ -17,14 +17,15 @@ export const projectMenu =()=>{
     const libraryContent = document.querySelectorAll('.files')
 
     libraryContent.forEach((file) =>{
-        file.addEventListener('click', openNotes)
+        file.onclick = openNotes
     })
 
 
     function openNotes(e){
-        //console.log(e)
+        console.log(e.target)
         e.target.lastElementChild.style.display = 'none';
-        const fileContents =  crudOperations.read(e.target.dataset.key);
+        let fileContents =  crudOperations.read( e.target.type,parseInt(e.target.dataset.key));
+        console.log(fileContents)
         const notes = notesMenu(fileContents);
 
         //e.target.removeEventListener('click', openNotes)
@@ -32,7 +33,8 @@ export const projectMenu =()=>{
 
     function render(){
 
-        let fileList = crudOperations.readAll();
+        let fileList = crudOperations.getAll();
+        console.log(fileList);
         for(let i=0; i < fileList.length; i++){
             contentLibrary.appendChild(newLibrary.createFile(fileList[i], i))
         }

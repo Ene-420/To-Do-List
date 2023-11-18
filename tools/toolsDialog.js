@@ -1,9 +1,11 @@
+import { crud } from "../obj/CRUD";
 import { Files, ToDo } from "../obj/files";
 
 export const dialog = ()=>{
 
     const notesPage = document.querySelector('.content');
     const dialog = document.querySelector('dialog');
+    let crudOperations = crud();
 
     showDialog()
 
@@ -15,6 +17,7 @@ export const dialog = ()=>{
     const priority = document.querySelector('.priority');
     const title =  document.querySelector('#form-title')
     const form = document.querySelector('form');
+    //const dateTime = document.querySelectorAll('.date-time');
     let checkedFileRadio="";
     
  
@@ -188,9 +191,21 @@ export const dialog = ()=>{
                 priorityRadio.forEach(radioBtn =>{
                     if(radioBtn.checked){
                         console.log(radioBtn.value);
-                        const file = new ToDo()
+                        const dateTime = radioBtn.nextSibling.nextSibling.value;
+                        if(dateTime){
+                            console.log(new Date(dateTime))
+                            const file = new ToDo(title.value,radioBtn.value, dateTime)
+                            crudOperations.setToDo(file)
+                        }
+                        //const file = new ToDo(title.value,radioBtn.value, dateTime)
                     }
                 })
+
+            }
+
+            else{
+                const file = new Files(title.value);
+                crudOperations.setNotes(file)
 
             }
         }

@@ -17,7 +17,7 @@ export const library =() =>{
         fileTitle.style.pointerEvents = 'none';
         check.setAttribute('input', 'checkbox');
         check.style.display = 'none';
-        if(item.constructor.name ==='To-Do'){
+        if(item.constructor.name ==='ToDo'){
             date.textContent = item.getDueDate();
             priorityLabel.classList.add(`${item.getPriority()}`)
             fileDiv.dataset.type= 'To-Do-List';   
