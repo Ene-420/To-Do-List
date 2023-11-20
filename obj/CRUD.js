@@ -45,11 +45,11 @@ export const crud = ()=>{
     function read(fileType, item){
         switch(fileType){
             case 'Notes':
-                return notes[item]
+                return notes.find(element => element.getTitle().includes(item));
                 break;
             
             case 'To-Do-List':
-                return toDoList[item];
+                return toDoList.find(element => element.getTitle().includes(item));
                 break;
             
             default:

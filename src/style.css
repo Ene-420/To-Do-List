@@ -197,3 +197,30 @@ form{
     width: 5em;
     background-color: rgb(48, 157, 201);
 }
+
+.additional-feats{
+    margin:0 10px;
+   opacity: 0;
+    
+}
+
+.additional-feats> button > i{
+    font-size: 1.25rem;
+    
+}
+
+.additional-feats-feats >button:hover{
+    color: rgb(48, 157, 201);
+}
+.files:hover .additional-feats{
+    /* display:block; */
+    opacity: 1;
+}
+
+.filter-btn, .pencil-btn{
+    width: 2em;
+}
+
+.filter-btn:hover, .pencil-btn:hover{
+    color: rgb(48, 157, 201);   
+}

@@ -23,8 +23,10 @@ export const projectMenu =()=>{
 
     function openNotes(e){
         console.log(e.target)
+        const childELements = e.target.children;
         e.target.lastElementChild.style.display = 'none';
-        let fileContents =  crudOperations.read( e.target.type,parseInt(e.target.dataset.key));
+        console.log( childELements.item(2).textContent)
+        let fileContents =  crudOperations.read(e.target.type, childELements.item(2).textContent);
         console.log(fileContents)
         const notes = notesMenu(fileContents);
 
