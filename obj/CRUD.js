@@ -15,13 +15,21 @@ export const crud = ()=>{
 
     function setNotes(item){
         notes.push(item);
-        localStorage.setItem('Notes', classTransformer.serialize(notes));
+        notesToLS();
     }
 
 
     function setToDo(item){
         toDoList.push(item);
-        localStorage.setItem('To-Do-List', classTransformer.serialize(toDoList));
+        toDoListToLS();   
+    }
+
+    function notesToLS(){
+        this.localStorage.setItem('Notes', classTransformer.serialize(notes));
+    }
+
+    function toDoListToLS(){
+        this.localStorage.setItem('To-Do-List', classTransformer.serialize(toDoList));
     }
 
     function getNotes(){
@@ -45,11 +53,11 @@ export const crud = ()=>{
     function read(fileType, item){
         switch(fileType){
             case 'Notes':
-                return notes.find(element => element.getTitle().includes(item));
+                return notes.find((element) => element.getTitle().includes(item));
                 break;
             
             case 'To-Do-List':
-                return toDoList.find(element => element.getTitle().includes(item));
+                return toDoList.find((element) => element.getTitle().includes(item));
                 break;
             
             default:

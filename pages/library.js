@@ -12,7 +12,7 @@ export const library =() =>{
         const check = document.createElement('input');
         const fileDiv = document.createElement('button');
         const editButton = document.createElement('button');
-        const edit = document.createElement
+        //const edit = document.createElement
 
         fileDiv.classList.add('files');
         fileTitle.textContent = item.getTitle();

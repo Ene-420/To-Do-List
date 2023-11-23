@@ -44,7 +44,7 @@ export class ToDo extends Files{
     }
 
     getDueDate(){
-        const dday= intlFormatDistance( new Date(this.dueDate),new Date(this.dateCreated))
+        const dday= intlFormatDistance( new Date(this.dueDate),new Date())
         return dday;
     }
 

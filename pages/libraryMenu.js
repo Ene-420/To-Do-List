@@ -26,7 +26,7 @@ export const projectMenu =()=>{
         const childELements = e.target.children;
         e.target.lastElementChild.style.display = 'none';
         console.log( childELements.item(2).textContent)
-        let fileContents =  crudOperations.read(e.target.type, childELements.item(2).textContent);
+        let fileContents =  crudOperations.read(e.target.dataset.type, childELements.item(2).textContent);
         console.log(fileContents)
         const notes = notesMenu(fileContents);
 

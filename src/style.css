@@ -70,13 +70,16 @@ body{
 }
 .notes-page{
     display:flex;
-    width:80%;
+    width:90%;
     height: 70%;
     margin: 0 auto;
     flex-direction: column;
+    align-items: center;
 }
 
 .notes-page-head{
+    margin: 10px;
+    width: 100%;
     display: flex;
 }
 
@@ -84,8 +87,21 @@ body{
     flex: 1;
 }
 
+.notes-page-head> button{
+    margin-left: auto;
+}
+
 .notes-page-head> button> i{
-    font-size: 3vw;
+    
+    font-size: 2rem;
+}
+
+.notes-page>textarea{
+    border: 1px solid #efefef;
+    width: 95%;
+    padding: 10px;
+    height: 80%;
+    border-radius: 15px;
 }
 .files{
     display:flex;
@@ -119,12 +135,12 @@ body{
 .files h1{
     flex: 1;
     text-align: start;
-    font-size: 1,8em;
+    font-size: 2em;
     
 }
 .top-priority, .mid-priority, .low-priority, .note-tag{
-    width: 1vw;
-    height: 1vw;
+    width: 1em;
+    height: 1em;
     border-radius: 50%;
     background-color: red;
 }
@@ -166,13 +182,16 @@ form{
     padding: 10px;
     margin: 8px auto;
 }
-.button-div{
+.button-div, .notes-btn-div{
     display: flex;
-    margin: 5px auto;
+    margin: 15px auto;
     justify-content: center;
     gap: 5px;
 }
 
+.notes-btn-div{
+    width: 80%;
+}
 .priority{
     display: none;
     margin-left: 10px;
@@ -189,15 +208,19 @@ form{
     padding: 5px;
     display: none;
 }
-.create-btn, .cancel-btn{
+.create-btn, .cancel-btn, .save-notes-btn, .cancel-notes-btn{
     padding: 8px 10px;
     border-radius: 16px;
     color: white;
     font-weight: 900;
-    width: 5em;
+    width: fit-content;
+    font-size: 1.5em;
     background-color: rgb(48, 157, 201);
 }
 
+.save-notes-btn, .cancel-notes-btn{
+    font-size: 2rem;
+}
 .additional-feats{
     margin:0 10px;
    opacity: 0;
