@@ -1,11 +1,12 @@
 import { crud } from "../obj/CRUD";
 import { Files, ToDo } from "../obj/files";
+import { projectMenu } from "../pages/libraryMenu";
 
 export const dialog = ()=>{
 
     const notesPage = document.querySelector('.content');
     const dialog = document.querySelector('dialog');
-    let crudOperations = crud();
+    //let crudOperations = crud();
 
     showDialog()
 
@@ -195,7 +196,8 @@ export const dialog = ()=>{
                         if(dateTime){
                             console.log(new Date(dateTime))
                             const file = new ToDo(title.value,radioBtn.value, dateTime)
-                            crudOperations.setToDo(file)
+                            crud().setToDo(file)
+                            projectMenu()
                         }
                         //const file = new ToDo(title.value,radioBtn.value, dateTime)
                     }
@@ -205,8 +207,8 @@ export const dialog = ()=>{
 
             else{
                 const file = new Files(title.value);
-                crudOperations.setNotes(file)
-
+                crud().setNotes(file)
+                projectMenu()
             }
         }
         else{
@@ -214,6 +216,7 @@ export const dialog = ()=>{
         }
         clearSelection()
         closePriority()
+        closeDialog(e)
     }
     
 

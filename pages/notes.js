@@ -1,4 +1,5 @@
 import { crud } from "../obj/CRUD";
+import { projectMenu } from "./libraryMenu";
 
 export const notesMenu = (notesContent) =>{
     const contentBody = document.querySelector('.content');
@@ -27,7 +28,7 @@ export const notesMenu = (notesContent) =>{
     closeBtn.onclick =  closeNotes;
     cancelNotesButton.onclick = closeNotes;
     saveNotesButton.onclick = saveNewPage;
-    notesHeader.oninput = getHeaderText;
+    //notesHeader.oninput = getHeaderText;
     notesTextArea.oninput = getAreaText;
 
 
@@ -89,13 +90,13 @@ export const notesMenu = (notesContent) =>{
     function updateContentNotes(item){
         const pageHeader = contentNotes.querySelector('.notes-page-head> h2');
         const pageBody = contentNotes.querySelector('.notes-page>textarea')
-
+        
         if(pageHeader.textContent.includes(item.getTitle())){
             openNotes();
         }
         else{
             pageHeader.textContent = item.getTitle();
-            pageBody.textContent = item.getNotes();
+            pageBody.value = item.getNotes();
 
             openNotes();
         }
@@ -118,19 +119,20 @@ export const notesMenu = (notesContent) =>{
 
     function saveNewPage(e){
         let constructorName = notesContent.constructor.name;
-        // let headerTitle = notesHeader.getAttribute(value);
-        // let notesText = notesTextArea.textContent;
+        let headerTitle = notesHeader.textContent;
+        //let notesText = notesTextArea.value;
+
+        console.log(headerTitle);
+        console.log(areaText);
         console.log(constructorName)
-        if(e.target && hText && areaText){
-            if(notesContent.getTitle().includes(hText) && notesContent.getNotes().includes(areaText)){
-                console.log("We're here")
-            }
+        if(e.target || headerTitle || areaText){
+                console.log('Here')
+                const itemInLS = crudOp.read(constructorName, notesContent.getTitle());
+                console.log(itemInLS)
+                itemInLS.getTitle() === headerTitle ? 0 : itemInLS.setTitle(headerTitle);
+                itemInLS.getNotes() === areaText ? 0 : itemInLS.setNotes(areaText);
 
-            else{
-                //const itemInLS = crudOp.read(constructorName, item.getTitle());
-                notesContent.getTitle().includes(hText) ? 0 : notesContent.setTitle(hText);
-                notesContent.getNotes().includes(areaText) ? 0 : notesContent.setNotes(areaText);
-
+                console.log(itemInLS.getTitle())
                 switch(constructorName){
                     case 'Files':
                         crudOp.notesToLS();
@@ -140,13 +142,14 @@ export const notesMenu = (notesContent) =>{
                         crudOp.toDoListToLS();
                         break;
                 }
-            }
+            projectMenu()
         }
     }
 
     function showNotes(){
         if(contentNotes){
-            
+
+            console.log({notesContent})
             updateContentNotes(notesContent);
             
             
@@ -156,13 +159,13 @@ export const notesMenu = (notesContent) =>{
         }
     }
 
-    function getHeaderText(e){
-        hText = e.target.value;
-        console.log(hText)
-    }
+    // function getHeaderText(e){
+    //     hText = e.target.value;
+    //     console.log(hText)
+    // }
 
     function getAreaText(e){
         areaText = e.target.value;
-        console.log(areaText)
+        //console.log(areaText)
     }
 }

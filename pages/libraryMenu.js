@@ -6,42 +6,101 @@ import { notesMenu } from "./notes";
 export const projectMenu =()=>{
     const contentBody = document.querySelector('.content');
     
-    const contentLibrary = document.createElement('section');
-    contentLibrary.classList.add('content-library');
+    
+    const libraryPage = contentBody.querySelector('.content-library')
     const newLibrary = library();
-    const crudOperations = crud();
+   
 
     
-    libraryTools();
-    render();
+    
+    displayContent()
+    //render();
     const libraryContent = document.querySelectorAll('.files')
+    const deleteBtn = document.querySelectorAll('.trash-btn');
 
     libraryContent.forEach((file) =>{
         file.onclick = openNotes
     })
 
+    deleteBtn.forEach(btn =>{
+        btn.onclick = deleteFileOnScreen
+    })
 
     function openNotes(e){
-        console.log(e.target)
-        const childELements = e.target.children;
-        e.target.lastElementChild.style.display = 'none';
-        console.log( childELements.item(2).textContent)
-        let fileContents =  crudOperations.read(e.target.dataset.type, childELements.item(2).textContent);
-        console.log(fileContents)
-        const notes = notesMenu(fileContents);
-
-        //e.target.removeEventListener('click', openNotes)
+        if(e.target.dataset.key){
+            const childELements = e.target.children;
+       
+            let fileContents =  crud().read(e.target.dataset.type, childELements.item(2).textContent);
+            
+            const notes = notesMenu(fileContents);
+        }
+        
     }
 
     function render(){
+        let fileList = crud().getAll();
 
-        let fileList = crudOperations.getAll();
-        console.log(fileList);
-        for(let i=0; i < fileList.length; i++){
-            contentLibrary.appendChild(newLibrary.createFile(fileList[i], i))
+        if(libraryPage){
+            createLibraryPageContent(libraryPage);
+
+            contentBody.appendChild(libraryPage)
+        }
+        else{
+            const contentLibrary = document.createElement('section');
+            contentLibrary.classList.add('content-library');
+
+            createLibraryPageContent(contentLibrary)
+            contentBody.appendChild(contentLibrary);
         }
         
-        contentBody.appendChild(contentLibrary);
+        //contentLibrary.replaceChildren()
+        
+        
+    }
+
+    function deleteFileOnScreen(e){
+        const crudOp = crud();
+        const target = e.target.parentNode.parentNode.closest('.files')
+        console.log(target)
+
+        let fileContents =  crudOp.read(e.target.dataset.type, target.children.item(2).textContent);
+        
+        target.dataset.type === 'Notes' ? crudOp.deleteItemInNotes(fileContents)
+        : crudOp.deleteItemInToDoList(fileContents);
+        
+        reRender()
+
+
+
     }
     
+    function reRender(){
+        if(libraryPage.hasChildNodes){
+            libraryPage.replaceChildren();
+
+            render();
+        }
+    }
+
+    function displayContent(){
+        if(libraryPage){
+            reRender()
+        }
+
+        else{
+            
+            libraryTools();
+            render()
+        }
+    }
+
+    function createLibraryPageContent(div){
+        let fileList = crud().getAll();
+        //const div = document.createElement('div');
+        for(let i=0; i < fileList.length; i++){
+            div.appendChild(newLibrary.createFile(fileList[i], i))
+        }
+
+        //return div;
+    } 
 }

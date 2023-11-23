@@ -240,10 +240,10 @@ form{
     opacity: 1;
 }
 
-.filter-btn, .pencil-btn{
+.trash-btn, .pencil-btn{
     width: 2em;
 }
 
-.filter-btn:hover, .pencil-btn:hover{
+.trash-btn:hover, .pencil-btn:hover{
     color: rgb(48, 157, 201);   
 }

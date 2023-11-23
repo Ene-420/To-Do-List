@@ -25,11 +25,11 @@ export const crud = ()=>{
     }
 
     function notesToLS(){
-        this.localStorage.setItem('Notes', classTransformer.serialize(notes));
+        localStorage.setItem('Notes', classTransformer.serialize(notes));
     }
 
     function toDoListToLS(){
-        this.localStorage.setItem('To-Do-List', classTransformer.serialize(toDoList));
+        localStorage.setItem('To-Do-List', classTransformer.serialize(toDoList));
     }
 
     function getNotes(){
@@ -52,12 +52,14 @@ export const crud = ()=>{
 
     function read(fileType, item){
         switch(fileType){
-            case 'Notes':
-                return notes.find((element) => element.getTitle().includes(item));
+            case 'Notes': 
+            case'Files':
+                return getNotes().find((element) => element.getTitle().includes(item));
                 break;
             
-            case 'To-Do-List':
-                return toDoList.find((element) => element.getTitle().includes(item));
+            case 'To-Do-List': 
+            case 'ToDo':
+                return getToDoList().find((element) => element.getTitle().includes(item));
                 break;
             
             default:
@@ -71,5 +73,15 @@ export const crud = ()=>{
     }
     
 
-    return{ readAll, read, setNotes, setToDo, getNotes, getToDoList, getAll};
+    function deleteItemInNotes(item){
+        notes.splice(notes.indexOf(item), 1)
+        notesToLS()
+    }
+
+    function deleteItemInToDoList(item){
+        toDoList.splice(toDoList.indexOf(item), 1);
+        toDoListToLS();
+    }
+
+    return{ readAll, read, setNotes, setToDo, getNotes, getToDoList, getAll, notesToLS, toDoListToLS, deleteItemInNotes, deleteItemInToDoList};
 }

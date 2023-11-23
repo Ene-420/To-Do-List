@@ -45,7 +45,7 @@ export const library =() =>{
     }
 
     function addFeats(){
-        const addFeatures = ['filter', 'pencil'];
+        const addFeatures = ['trash', 'pencil'];
         const featDiv = document.createElement('div');
         featDiv.classList.add('additional-feats')
         addFeatures.forEach((item) =>{
