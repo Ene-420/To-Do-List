@@ -16,7 +16,37 @@ body{
     display: flex;
     flex-direction: column;
     background-color: #efefef;
+    
 }
+
+.landing-page{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.landing-page h1{
+    font-size: 6em;
+    margin: 10px 0;
+}
+.notes-landing-page-btn, .to-do-list-landing-page-btn{
+    font-size: 5em;
+    width: 6em;
+    margin: 15px 0;
+    border: 3px solid rgb(48, 157, 201);
+    background-color: rgb(48, 157, 201);
+    color: white;
+    padding: 5px 8px;
+    border-radius: 15px;
+    box-shadow: 5px 10px #666666;
+}
+
+.notes-landing-page-btn:active, .to-do-list-landing-page-btn:active{
+    transform: translateY(4px);
+    box-shadow: 5px 10px #999999;
+}
+
 
 .head{
     border-bottom: 1px solid rgb(206, 206, 206);

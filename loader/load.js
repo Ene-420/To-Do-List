@@ -1,7 +1,7 @@
-
+const body = document.querySelector('body');
 
 export const  renderHeader = () =>{
-    const body = document.querySelector('body');
+    
 
     const headDiv = document.createElement('header');
     headDiv.classList.add('head');
@@ -32,7 +32,7 @@ export const  renderHeader = () =>{
 
 
  export const renderBody = () =>{
-    const body = document.querySelector('body');
+   // const body = document.querySelector('body');
 
     const bodyDiv = document.createElement('main');
 
@@ -41,3 +41,22 @@ export const  renderHeader = () =>{
     body.appendChild(bodyDiv)
  }
  
+ export const landingPage = () =>{
+    const div = document.createElement('div');
+    const headerMsg = document.createElement('h1');
+    headerMsg.textContent = 'Welcome '
+
+    div.appendChild(headerMsg)
+    div.classList.add('landing-page')
+    const landingPageBtn = ['Notes', 'To-Do-List'];
+    landingPageBtn.forEach(btn =>{
+        const pageBtn  = document.createElement('button')
+        pageBtn.textContent = btn
+        pageBtn.classList.add(`${btn.toLowerCase()}-landing-page-btn`)
+        div.appendChild(pageBtn);
+    })
+
+    
+    body.appendChild(div)
+    //const notesBtn  = document.createElement('button')
+ }

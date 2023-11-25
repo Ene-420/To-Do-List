@@ -5,13 +5,8 @@ import { notesMenu } from "./notes";
 
 export const projectMenu =()=>{
     const contentBody = document.querySelector('.content');
-    
-    
     const libraryPage = contentBody.querySelector('.content-library')
     const newLibrary = library();
-   
-
-    
     
     displayContent()
     //render();
@@ -33,8 +28,7 @@ export const projectMenu =()=>{
             let fileContents =  crud().read(e.target.dataset.type, childELements.item(2).textContent);
             
             const notes = notesMenu(fileContents);
-        }
-        
+        }  
     }
 
     function render(){
@@ -51,35 +45,31 @@ export const projectMenu =()=>{
 
             createLibraryPageContent(contentLibrary)
             contentBody.appendChild(contentLibrary);
-        }
-        
-        //contentLibrary.replaceChildren()
-        
-        
+        }  
     }
 
     function deleteFileOnScreen(e){
         const crudOp = crud();
         const target = e.target.parentNode.parentNode.closest('.files')
-        console.log(target)
+        //console.log(e.target.dataset.type)
 
-        let fileContents =  crudOp.read(e.target.dataset.type, target.children.item(2).textContent);
+        let fileContents =  crudOp.read(target.dataset.type, target.children.item(2).textContent);
         
         target.dataset.type === 'Notes' ? crudOp.deleteItemInNotes(fileContents)
         : crudOp.deleteItemInToDoList(fileContents);
         
-        reRender()
-
-
-
+        projectMenu()
     }
     
     function reRender(){
-        if(libraryPage.hasChildNodes){
+        console.log(libraryPage.childElementCount)
+        if(libraryPage.children.length > 0){
             libraryPage.replaceChildren();
 
-            render();
+            
         }
+
+        render();
     }
 
     function displayContent(){
@@ -97,10 +87,14 @@ export const projectMenu =()=>{
     function createLibraryPageContent(div){
         let fileList = crud().getAll();
         //const div = document.createElement('div');
-        for(let i=0; i < fileList.length; i++){
-            div.appendChild(newLibrary.createFile(fileList[i], i))
+        if(fileList){
+            for(let i=0; i < fileList.length; i++){
+                div.appendChild(newLibrary.createFile(fileList[i], i))
+            }
         }
+        
 
         //return div;
     } 
 }
+//projectMenu()
