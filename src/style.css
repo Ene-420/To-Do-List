@@ -53,8 +53,11 @@ body{
 }
 
 .head-nav{
-    width: 70%;
+    width: 80%;
     margin: 10px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
    }
 
 .head-nav ul{
@@ -63,6 +66,44 @@ body{
 
 }
 
+.header-text{
+    margin: 0 auto;
+    font-size: 2em;
+}
+.switch-button{
+    margin-left: auto;
+    border-radius: 15px;
+    background-color: rgb(48, 157, 201);
+    padding: 5px 20px;
+    font-size: 1.5em;
+    color: #ffffff;
+    transition: all 0.5s;
+    position: relative;
+    box-shadow: 0px 1px 5px 5px rgb(199, 199, 199);;
+}
+
+.switch-button:after {
+    content: '»';
+    position: absolute;
+    opacity: 0;  
+    top: 5px;
+    right: -20px;
+    transition: 0.5s;
+}
+
+  .switch-button:hover{
+    padding-right: 24px;
+    padding-left:12px;
+}
+
+  .switch-button:hover:after {
+    opacity: 1;
+    right: 10px;
+}
+
+.switch-button:active{
+    transform: translateY(3px);
+}
 .head-nav-btn{
     color: rgb(48, 157, 201);
     padding: 10px;

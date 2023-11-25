@@ -1,34 +1,47 @@
 const body = document.querySelector('body');
 
-export const  renderHeader = () =>{
+export const  renderHeader = (item) =>{
     
+
+    // const headDiv = document.createElement('header');
+    // headDiv.classList.add('head');
+
+    // const headItems = ['TO-DO', 'NOTES'];
+    // const navHead = document.createElement('nav');
+    // navHead.classList.add('head-nav');
+    // const listItems = document.createElement('ul')
+    
+
+    // headItems.forEach(item => {
+    //     const headListItem = document.createElement('li');
+    //     const itemBtn = document.createElement('button');
+    //     itemBtn.classList.add('head-nav-btn');
+
+    //     itemBtn.textContent = item;
+    //     headListItem.append(itemBtn);
+
+    //     listItems.appendChild(headListItem);
+    // })
+
+    // navHead.appendChild(listItems);
+    // headDiv.appendChild(navHead);
+    // body.appendChild(headDiv);
 
     const headDiv = document.createElement('header');
     headDiv.classList.add('head');
 
-    const headItems = ['TO-DO', 'NOTES'];
-    const navHead = document.createElement('nav');
-    navHead.classList.add('head-nav');
-    const listItems = document.createElement('ul')
+    const itemHeader = document.createElement('h2');
+    const switchBtn = document.createElement('button');
+    
+    itemHeader.textContent = item;
+    
+    switchBtn.textContent = item === 'Notes'? 'To-Do-List' : 'Notes';
     
 
-    headItems.forEach(item => {
-        const headListItem = document.createElement('li');
-        const itemBtn = document.createElement('button');
-        itemBtn.classList.add('head-nav-btn');
-
-        itemBtn.textContent = item;
-        headListItem.append(itemBtn);
-
-        listItems.appendChild(headListItem);
-    })
-
-    navHead.appendChild(listItems);
-    headDiv.appendChild(navHead);
-    body.appendChild(headDiv);
 
 
- }
+    
+}
 
 
  export const renderBody = () =>{

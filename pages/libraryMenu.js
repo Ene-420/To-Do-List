@@ -3,7 +3,7 @@ import { libraryTools } from "../tools/libraryTools";
 import { library } from "./library";
 import { notesMenu } from "./notes";
 
-export const projectMenu =()=>{
+export const projectMenu =(choice)=>{
     const contentBody = document.querySelector('.content');
     const libraryPage = contentBody.querySelector('.content-library')
     const newLibrary = library();
@@ -32,7 +32,6 @@ export const projectMenu =()=>{
     }
 
     function render(){
-        let fileList = crud().getAll();
 
         if(libraryPage){
             createLibraryPageContent(libraryPage);
@@ -58,7 +57,7 @@ export const projectMenu =()=>{
         target.dataset.type === 'Notes' ? crudOp.deleteItemInNotes(fileContents)
         : crudOp.deleteItemInToDoList(fileContents);
         
-        projectMenu()
+        projectMenu(target.dataset.type)
     }
     
     function reRender(){
@@ -85,16 +84,13 @@ export const projectMenu =()=>{
     }
 
     function createLibraryPageContent(div){
-        let fileList = crud().getAll();
-        //const div = document.createElement('div');
+         
+        let fileList = choice === 'Notes'? crud().getNotes() : crud().getToDoList();
+ 
         if(fileList){
             for(let i=0; i < fileList.length; i++){
                 div.appendChild(newLibrary.createFile(fileList[i], i))
             }
         }
-        
-
-        //return div;
     } 
 }
-//projectMenu()
