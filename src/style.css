@@ -120,6 +120,7 @@ body{
     gap: 8px;
     grid-template-columns:  [start]1fr[start-end] 0fr [end];
     grid-auto-rows: auto 1fr;
+    position: relative;
 }
 
 .content-library{
@@ -229,11 +230,11 @@ body{
 }
 
 dialog{
-    left: 50%;
-    top:50%;
+    left: 40%;
+    top:35%;
     background-color: #ffffff;
-    min-width: fit-content;
-    
+    width: 30%;
+    position: absolute;   
     height: fit-content;
     padding: 8px;
     border: 3px solid #7a7a7a;
@@ -252,6 +253,7 @@ form{
     border-radius: 15px;
     padding: 10px;
     margin: 8px auto;
+    font-size: 1.2em;
 }
 .button-div, .notes-btn-div{
     display: flex;
@@ -263,9 +265,19 @@ form{
 .notes-btn-div{
     width: 80%;
 }
+.file-type-div{
+    gap: 5px;
+    display: flex;
+    align-items: center;
+}
+.file-type-div label{
+    font-size: 1.2em;
+    padding: 5px;
+}
 .priority{
     display: none;
     margin-left: 10px;
+    margin-top: 20px;
 }
 
 .priority-label{

@@ -169,6 +169,7 @@ export const dialog = ()=>{
         
         fileDiv.appendChild(fileType)
         fileDiv.appendChild(fileLabel)
+        fileDiv.classList.add('file-type-div')
         
 
         if(itemType.includes('priority-label')){
